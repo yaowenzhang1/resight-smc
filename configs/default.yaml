@@ -1,0 +1,60 @@
+# One ReSight main-experiment run (LogicVista, seed 0).
+# Matching command-line options override these values.
+model: Qwen/Qwen2.5-VL-7B-Instruct
+dataset: logicvista
+split: null
+method: resight
+prompt_mode: cot
+
+seed: 0
+max_samples: null
+start_index: 0
+output_dir: outputs
+run_id: null
+
+# Model and runtime
+engine: transformers
+dtype: bfloat16
+device: cuda
+device_map: null
+attention_backend: sdpa
+min_pixels: 200704
+max_pixels: 1003520
+compile: false
+baseline_batch_size: 8
+gpu_memory_utilization: 0.90
+tensor_parallel_size: 1
+max_model_len: 4096
+
+# Ordinary sampling baselines
+temperature: 1.0
+top_p: 1.0
+top_k: 0
+
+# Sequence-power target and SMC
+max_new_tokens: 1024
+alpha: 2.0
+# null selects the method default: gamma=2 for ReSight and gamma=1 for Power/Island-SMC.
+gamma: null
+alpha_ramp_tokens: 128
+num_particles: 32
+num_islands: 4
+particles_per_island: null
+ess_threshold: 0.5
+checkpoint_interval: 32
+
+# ReSight visual scouts
+scout_fraction: 0.25
+visual_checkpoint: 40
+visual_length: 16
+# Double the attention odds for image keys, then multiply by four inside the routed region.
+image_attention_logit_bias: 0.6931471805599453
+region_attention_logit_bias: 1.3862943611198906
+# Values in (0, 1) specify relative depth; -1 selects the final layer.
+attention_layer: -1
+area_exponent: 0.75
+overlap_penalty: 1.0
+overlap_penalty_scope: global
+
+cot_suffix: "Think step by step and end with `Final answer: ...`."
+direct_suffix: "Answer directly and end with `Final answer: ...`."

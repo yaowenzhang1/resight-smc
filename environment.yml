@@ -1,0 +1,17 @@
+name: resight-smc
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip>=25
+  - git
+  - git-lfs
+  - ffmpeg
+  - cmake
+  - ninja
+  - pkg-config
+  - ccache
+  - pip:
+      - -r requirements.txt
+      - -e .

@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resight-smc"
+version = "0.1.0"
+description = "Official research implementation of ReSight-SMC"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.6",
+  "torchvision>=0.21",
+  "transformers>=4.57,<5",
+  "accelerate>=1.6",
+  "datasets>=3.2",
+  "huggingface-hub>=0.28",
+  "qwen-vl-utils>=0.0.10",
+  "pillow>=10",
+  "pyyaml>=6",
+  "numpy>=1.26",
+  "tqdm>=4.67",
+]
+
+[project.optional-dependencies]
+vllm = ["vllm>=0.11"]
+flash = ["flash-attn>=2.7"]
+dev = ["pytest>=8", "ruff>=0.9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

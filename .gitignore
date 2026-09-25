@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+outputs/
+outputs_deprecated/
+outputs_power_smc_alpha2/
+outputs_old_scout/
+outputs_old_route/
+outputs_archive/
+.trash/
+.vscode/
